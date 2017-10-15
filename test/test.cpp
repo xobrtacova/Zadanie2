@@ -75,7 +75,69 @@ TEST_CASE("Options")
 
 	SECTION("multiple")
 	{
-	
+		SECTION("file and 3 options")
+		{
+			char * argv[] = { "line-sort", "-r", "-u", "-i", "subor.txt" };
+			auto options = options::parse(5, argv);
+			//REQUIRE(options == true);
+			REQUIRE(options.value() == make_tuple(Order::descending, Filter::unique, Case::ignore, argv[4]));
+		}
+
+		SECTION("cin and 3 options")
+		{
+			char * argv[] = { "line-sort", "-r", "-u", "-i" };
+			auto options = options::parse(4, argv);
+			//REQUIRE(options == true);
+			REQUIRE(options.value() == make_tuple(Order::descending, Filter::unique, Case::ignore, (char *) nullptr));
+		}
+
+		SECTION("file and 2 options reversed and unique")
+		{
+			char * argv[] = { "line-sort", "-r", "-u", "subor.txt" };
+			auto options = options::parse(4, argv);
+			//REQUIRE(options == true);
+			REQUIRE(options.value() == make_tuple(Order::descending, Filter::unique, Case::sensitive, argv[3]));
+		}
+
+		SECTION("cin and 2 options reversed and unique")
+		{
+			char * argv[] = { "line-sort", "-r", "-u" };
+			auto options = options::parse(3, argv);
+			//REQUIRE(options == true);
+			REQUIRE(options.value() == make_tuple(Order::descending, Filter::unique, Case::sensitive, (char *) nullptr));
+		}
+
+		SECTION("file and 2 options ignore case and reversed")
+		{
+			char * argv[] = { "line-sort", "-i", "-r", "subor.txt" };
+			auto options = options::parse(4, argv);
+			//REQUIRE(options == true);
+			REQUIRE(options.value() == make_tuple(Order::descending, Filter::all, Case::ignore, argv[3]));
+		}
+
+		SECTION("cin and 2 options ignore case and reversed")
+		{
+			char * argv[] = { "line-sort", "-i", "-r" };
+			auto options = options::parse(3, argv);
+			//REQUIRE(options == true);
+			REQUIRE(options.value() == make_tuple(Order::descending, Filter::all, Case::ignore, (char *) nullptr));
+		}
+
+		SECTION("file and 2 options unique and ignore case")
+		{
+			char * argv[] = { "line-sort", "-u", "-i", "subor.txt" };
+			auto options = options::parse(4, argv);
+			//REQUIRE(options == true);
+			REQUIRE(options.value() == make_tuple(Order::ascending, Filter::unique, Case::ignore, argv[3]));
+		}
+
+		SECTION("cin and 2 options unique and ignore case")
+		{
+			char * argv[] = { "line-sort", "-u", "-i" };
+			auto options = options::parse(3, argv);
+			//REQUIRE(options == true);
+			REQUIRE(options.value() == make_tuple(Order::ascending, Filter::unique, Case::ignore, (char *) nullptr));
+		}
 	}
 }
 
