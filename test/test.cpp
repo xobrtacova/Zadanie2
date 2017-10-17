@@ -22,7 +22,6 @@ TEST_CASE("Options")
 		{
 			char * argv[] = { "line-sort", "-r", "subor.txt" };
 			auto options = options::parse(3, argv);
-			//REQUIRE(options == true);
 			REQUIRE(options.value() == make_tuple(Order::descending, Filter::all, Case::sensitive, argv[2]));
 		}
 
@@ -30,7 +29,6 @@ TEST_CASE("Options")
 		{
 			char * argv[] = { "line-sort", "-r" };
 			auto options = options::parse(2, argv);
-			//REQUIRE(options == true);
 			REQUIRE(options.value() == make_tuple(Order::descending, Filter::all, Case::sensitive, (char *) nullptr));
 		}
 	}
@@ -41,7 +39,6 @@ TEST_CASE("Options")
 		{
 			char * argv[] = { "line-sort", "-u", "subor.txt" };
 			auto options = options::parse(3, argv);
-			//REQUIRE(options == true);
 			REQUIRE(options.value() == make_tuple(Order::ascending, Filter::unique, Case::sensitive, argv[2]));
 		}
 
@@ -49,7 +46,6 @@ TEST_CASE("Options")
 		{
 			char * argv[] = { "line-sort", "-u" };
 			auto options = options::parse(2, argv);
-			//REQUIRE(options == true);
 			REQUIRE(options.value() == make_tuple(Order::ascending, Filter::unique, Case::sensitive, (char *) nullptr));
 		}	
 	}
@@ -60,7 +56,6 @@ TEST_CASE("Options")
 		{
 			char * argv[] = { "line-sort", "-i", "subor.txt" };
 			auto options = options::parse(3, argv);
-			//REQUIRE(options == true);
 			REQUIRE(options.value() == make_tuple(Order::ascending, Filter::all, Case::ignore, argv[2]));
 		}
 
@@ -68,7 +63,6 @@ TEST_CASE("Options")
 		{
 			char * argv[] = { "line-sort", "-i" };
 			auto options = options::parse(2, argv);
-			//REQUIRE(options == true);
 			REQUIRE(options.value() == make_tuple(Order::ascending, Filter::all, Case::ignore, (char *) nullptr));
 		}
 	}
@@ -79,7 +73,6 @@ TEST_CASE("Options")
 		{
 			char * argv[] = { "line-sort", "-r", "-u", "-i", "subor.txt" };
 			auto options = options::parse(5, argv);
-			//REQUIRE(options == true);
 			REQUIRE(options.value() == make_tuple(Order::descending, Filter::unique, Case::ignore, argv[4]));
 		}
 
@@ -87,7 +80,6 @@ TEST_CASE("Options")
 		{
 			char * argv[] = { "line-sort", "-r", "-u", "-i" };
 			auto options = options::parse(4, argv);
-			//REQUIRE(options == true);
 			REQUIRE(options.value() == make_tuple(Order::descending, Filter::unique, Case::ignore, (char *) nullptr));
 		}
 
@@ -95,7 +87,6 @@ TEST_CASE("Options")
 		{
 			char * argv[] = { "line-sort", "-r", "-u", "subor.txt" };
 			auto options = options::parse(4, argv);
-			//REQUIRE(options == true);
 			REQUIRE(options.value() == make_tuple(Order::descending, Filter::unique, Case::sensitive, argv[3]));
 		}
 
@@ -103,7 +94,6 @@ TEST_CASE("Options")
 		{
 			char * argv[] = { "line-sort", "-r", "-u" };
 			auto options = options::parse(3, argv);
-			//REQUIRE(options == true);
 			REQUIRE(options.value() == make_tuple(Order::descending, Filter::unique, Case::sensitive, (char *) nullptr));
 		}
 
@@ -111,7 +101,6 @@ TEST_CASE("Options")
 		{
 			char * argv[] = { "line-sort", "-i", "-r", "subor.txt" };
 			auto options = options::parse(4, argv);
-			//REQUIRE(options == true);
 			REQUIRE(options.value() == make_tuple(Order::descending, Filter::all, Case::ignore, argv[3]));
 		}
 
@@ -119,7 +108,6 @@ TEST_CASE("Options")
 		{
 			char * argv[] = { "line-sort", "-i", "-r" };
 			auto options = options::parse(3, argv);
-			//REQUIRE(options == true);
 			REQUIRE(options.value() == make_tuple(Order::descending, Filter::all, Case::ignore, (char *) nullptr));
 		}
 
@@ -127,7 +115,6 @@ TEST_CASE("Options")
 		{
 			char * argv[] = { "line-sort", "-u", "-i", "subor.txt" };
 			auto options = options::parse(4, argv);
-			//REQUIRE(options == true);
 			REQUIRE(options.value() == make_tuple(Order::ascending, Filter::unique, Case::ignore, argv[3]));
 		}
 
@@ -135,9 +122,9 @@ TEST_CASE("Options")
 		{
 			char * argv[] = { "line-sort", "-u", "-i" };
 			auto options = options::parse(3, argv);
-			//REQUIRE(options == true);
 			REQUIRE(options.value() == make_tuple(Order::ascending, Filter::unique, Case::ignore, (char *) nullptr));
 		}
+
 	}
 }
 
