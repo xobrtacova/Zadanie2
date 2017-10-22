@@ -1,7 +1,8 @@
 #include "options.h"
-#include<string>
 
-using namespace std;
+#include <iostream>
+#include <string>
+
 
 std::optional<std::tuple<Order, Filter, Case, char *>> options::parse(int argc, char * argv[])
 {
@@ -12,22 +13,46 @@ std::optional<std::tuple<Order, Filter, Case, char *>> options::parse(int argc, 
 
 	// parse commandline options
 
-	if (argc == 2) {
+	if (argc == 1)
+		return std::make_tuple(order, filter, compare, input);
 
-		//*input = nullptr;
-
-		if (argv[1] == string("-r")) {
-			order = { Order::descending };
+	else {
+		int pocet = argc, auxi = 0;
+		std::string pom = argv[argc - 1], aux = "";
+		if (pom.size() > 4) {
+			for (size_t i = pom.size() - 4; i < pom.size(); i++)
+				aux = aux + pom[i];
+			if (aux == std::string(".txt"))
+				auxi = 1;
 		}
 
-		else if (argv[1] == string("-u")) {
-			filter = { Filter::unique };
+		for (int i = 0; i < argc; i++) {
+			if (argv[i] == std::string("-r")) {
+				order = Order::descending;
+				pocet--;
+			}
+
+			else if (argv[i] == std::string("-u")) {
+				filter = Filter::unique;
+				pocet--;
+			}
+
+			else if (argv[i] == std::string("-i")) {
+				compare = Case::ignore;
+				pocet--;
+			}
 		}
 
-		else if (argv[1] == string("-i")) {
-			compare = { Case::ignore };
+		if (pocet == 2 && auxi == 1) {
+			return std::make_tuple(order, filter, compare, argv[argc - 1]);
+		}
+
+		else if (pocet == 1)
+			return std::make_tuple(order, filter, compare, input);
+
+		else {
+			Order o; Filter f; Case c; char * s = "";
+			return std::make_tuple(o, f, c, s);
 		}
 	}
-
-	return std::make_tuple(order, filter, compare, input);
 }
