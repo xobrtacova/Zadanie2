@@ -50,9 +50,7 @@ std::optional<std::tuple<Order, Filter, Case, char *>> options::parse(int argc, 
 		else if (pocet == 1)
 			return std::make_tuple(order, filter, compare, input);
 
-		else {
-			Order o; Filter f; Case c; char * s = "";
-			return std::make_tuple(o, f, c, s);
-		}
+		else
+			return {};
 	}
 }

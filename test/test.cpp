@@ -131,25 +131,22 @@ TEST_CASE("Options")
 		SECTION("option before file")
 		{
 			char * argv[] = { "line-sort", "-dsfrf", "subor.txt" };
-			Order o; Filter f; Case c; char * s = "";
 			auto options = options::parse(_countof(argv), argv);
-			REQUIRE(options.value() == make_tuple(o, f, c, s));
+			REQUIRE_FALSE(options.has_value());
 		}
 
 		SECTION("option behind file")
 		{
 			char * argv[] = { "line-sort", "subor.txt", "-r" };
-			Order o; Filter f; Case c; char * s = "";
 			auto options = options::parse(_countof(argv), argv);
-			REQUIRE(options.value() == make_tuple(o, f, c, s));
+			REQUIRE_FALSE(options.has_value());
 		}
 
 		SECTION("cin")
 		{
 			char * argv[] = { "line-sort", "-isdlk" };
-			Order o; Filter f; Case c; char * s = "";
 			auto options = options::parse(_countof(argv), argv);
-			REQUIRE(options.value() == make_tuple(o, f, c, s));
+			REQUIRE_FALSE(options.has_value());
 		}
 	}
 
@@ -158,17 +155,15 @@ TEST_CASE("Options")
 		SECTION("file")
 		{
 			char * argv[] = { "line-sort", "-dsfrf", "-dsfsa", "subor.txt" };
-			Order o; Filter f; Case c; char * s = "";
 			auto options = options::parse(_countof(argv), argv);
-			REQUIRE(options.value() == make_tuple(o, f, c, s));
+			REQUIRE_FALSE(options.has_value());
 		}
 
 		SECTION("cin")
 		{
 			char * argv[] = { "line-sort", "-isdlk", "-dsf" };
-			Order o; Filter f; Case c; char * s = "";
 			auto options = options::parse(_countof(argv), argv);
-			REQUIRE(options.value() == make_tuple(o, f, c, s));
+			REQUIRE_FALSE(options.has_value());
 		}
 	}
 
@@ -177,17 +172,15 @@ TEST_CASE("Options")
 		SECTION("file")
 		{
 			char * argv[] = { "line-sort", "-dsfrf", "-r", "subor.txt" };
-			Order o; Filter f; Case c; char * s = "";
 			auto options = options::parse(_countof(argv), argv);
-			REQUIRE(options.value() == make_tuple(o, f, c, s));
+			REQUIRE_FALSE(options.has_value());
 		}
 
 		SECTION("cin")
 		{
 			char * argv[] = { "line-sort", "-isdlk", "-r" };
-			Order o; Filter f; Case c; char * s = "";
 			auto options = options::parse(_countof(argv), argv);
-			REQUIRE(options.value() == make_tuple(o, f, c, s));
+			REQUIRE_FALSE(options.has_value());
 		}
 	}
 
@@ -196,17 +189,15 @@ TEST_CASE("Options")
 		SECTION("file")
 		{
 			char * argv[] = { "line-sort", "-u", "-dgasfg", "subor.txt" };
-			Order o; Filter f; Case c; char * s = "";
 			auto options = options::parse(_countof(argv), argv);
-			REQUIRE(options.value() == make_tuple(o, f, c, s));
+			REQUIRE_FALSE(options.has_value());
 		}
 
 		SECTION("cin")
 		{
 			char * argv[] = { "line-sort", "-u", "-fsgf" };
-			Order o; Filter f; Case c; char * s = "";
 			auto options = options::parse(_countof(argv), argv);
-			REQUIRE(options.value() == make_tuple(o, f, c, s));
+			REQUIRE_FALSE(options.has_value());
 		}
 	}
 
@@ -215,17 +206,15 @@ TEST_CASE("Options")
 		SECTION("file")
 		{
 			char * argv[] = { "line-sort", "-dsfrf", "-u", "-i", "subor.txt" };
-			Order o; Filter f; Case c; char * s = "";
 			auto options = options::parse(_countof(argv), argv);
-			REQUIRE(options.value() == make_tuple(o, f, c, s));
+			REQUIRE_FALSE(options.has_value());
 		}
 
 		SECTION("cin")
 		{
 			char * argv[] = { "line-sort", "-isdlk", "-u", "-i" };
-			Order o; Filter f; Case c; char * s = "";
 			auto options = options::parse(_countof(argv), argv);
-			REQUIRE(options.value() == make_tuple(o, f, c, s));
+			REQUIRE_FALSE(options.has_value());
 		}
 	}
 
@@ -234,17 +223,15 @@ TEST_CASE("Options")
 		SECTION("file")
 		{
 			char * argv[] = { "line-sort", "-r", "-fdsg", "-i", "subor.txt" };
-			Order o; Filter f; Case c; char * s = "";
 			auto options = options::parse(_countof(argv), argv);
-			REQUIRE(options.value() == make_tuple(o, f, c, s));
+			REQUIRE_FALSE(options.has_value());
 		}
 
 		SECTION("cin")
 		{
 			char * argv[] = { "line-sort", "-r", "-fsgers", "-i" };
-			Order o; Filter f; Case c; char * s = "";
 			auto options = options::parse(_countof(argv), argv);
-			REQUIRE(options.value() == make_tuple(o, f, c, s));
+			REQUIRE_FALSE(options.has_value());
 		}
 	}
 
@@ -253,17 +240,15 @@ TEST_CASE("Options")
 		SECTION("file")
 		{
 			char * argv[] = { "line-sort", "-r", "-u", "-dafsd", "subor.txt" };
-			Order o; Filter f; Case c; char * s = "";
 			auto options = options::parse(_countof(argv), argv);
-			REQUIRE(options.value() == make_tuple(o, f, c, s));
+			REQUIRE_FALSE(options.has_value());
 		}
 
 		SECTION("cin")
 		{
 			char * argv[] = { "line-sort", "-r", "-u", "-fasg" };
-			Order o; Filter f; Case c; char * s = "";
 			auto options = options::parse(_countof(argv), argv);
-			REQUIRE(options.value() == make_tuple(o, f, c, s));
+			REQUIRE_FALSE(options.has_value());
 		}
 	}
 
@@ -272,17 +257,15 @@ TEST_CASE("Options")
 		SECTION("file")
 		{
 			char * argv[] = { "line-sort", "-dsfrf", "-fsgs", "-dfa", "subor.txt" };
-			Order o; Filter f; Case c; char * s = "";
 			auto options = options::parse(_countof(argv), argv);
-			REQUIRE(options.value() == make_tuple(o, f, c, s));
+			REQUIRE_FALSE(options.has_value());
 		}
 
 		SECTION("cin")
 		{
 			char * argv[] = { "line-sort", "-isdlk", "-fsgs", "-dfa" };
-			Order o; Filter f; Case c; char * s = "";
 			auto options = options::parse(_countof(argv), argv);
-			REQUIRE(options.value() == make_tuple(o, f, c, s));
+			REQUIRE_FALSE(options.has_value());
 		}
 	}
 }
@@ -329,10 +312,18 @@ TEST_CASE("Sorting")
 
 	SECTION("ascending - unique")
 	{
+		std::ostringstream output{};
+
+		REQUIRE(sort::process(Order::ascending, Filter::unique, Case::sensitive, data::empty, output) == true);
+		REQUIRE(output.str() == "");
 	}
 
 	SECTION("ascending - unique - ignore case")
 	{
+		std::ostringstream output{};
+
+		REQUIRE(sort::process(Order::ascending, Filter::unique, Case::ignore, data::empty, output) == true);
+		REQUIRE(output.str() == "");
 	}
 
 	SECTION("descending")
