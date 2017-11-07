@@ -22,18 +22,19 @@ namespace
 	}
 }
 
+bool LessCaseInSensitive(const std::string& a, const std::string& b) {
 
-bool CompareStringCaseInsensitive(const std::string& lhs, const std::string& rhs) {
+	
+	return false;
+}
 
-	std::string::size_type common_length = std::min(lhs.length(), rhs.length());
+bool LessCaseSensitive(const std::string& a, const std::string& b) {
 
-	for (std::string::size_type i = 0; i<common_length; ++i) {
-		if (toupper(lhs[i]) < toupper(rhs[i]))return true;
-		if (toupper(lhs[i]) > toupper(rhs[i]))return false;
+	for (const char *ptrA = a.c_str(), *ptrB = b.c_str(); ; ++ptrA, ++ptrB) {
+
+		if (*ptrA != *ptrB || !*ptrA || !*ptrB) return *ptrA < *ptrB;
+
 	}
-
-	if (lhs.length()<rhs.length())return true;
-	if (lhs.length()>rhs.length())return false;
 
 	return false;
 }
@@ -46,7 +47,7 @@ bool sort::process(Order order, Filter filter, Case compare, std::istream & inpu
 	// implementation of sorting
 
 	if (compare == Case::ignore) {
-		std::sort(lines.begin(), lines.end(), CompareStringCaseInsensitive);
+		std::sort(lines.begin(), lines.end(), LessCaseSensitive);
 	}
 
 	else {
