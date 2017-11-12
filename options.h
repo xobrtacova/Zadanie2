@@ -6,5 +6,5 @@
 
 namespace options
 {
-	std::optional<std::tuple<Order, Filter, Case, char *>> parse(int argc, char * argv[]);
+	std::optional<std::tuple<Order, Filter, Case, Filtere, char *>> parse(int argc, char * argv[]);
 }

@@ -7,6 +7,7 @@
 
 namespace sort
 {
-	bool process(Order order, Filter filter, Case compare, std::istream & input, std::ostream & output);
+	bool process(Order order, Filter filter, Case compare, Filtere space, std::istream & input, std::ostream & output);
+	bool LessCaseSensitive(const std::string& a, const std::string& b);
 }
 

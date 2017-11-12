@@ -4,17 +4,18 @@
 #include <string>
 
 
-std::optional<std::tuple<Order, Filter, Case, char *>> options::parse(int argc, char * argv[])
+std::optional<std::tuple<Order, Filter, Case, Filtere, char *>> options::parse(int argc, char * argv[])
 {
 	Order order { Order::ascending };
 	Filter filter { Filter::all };
 	Case compare { Case::sensitive };
+	Filtere space { Filtere::nospace };
 	char * input { nullptr };
 
 	// parse commandline options
 
 	if (argc == 1)
-		return std::make_tuple(order, filter, compare, input);
+		return std::make_tuple(order, filter, compare, space, input);
 
 	else {
 		int pocet = argc, auxi = 0;
@@ -41,14 +42,19 @@ std::optional<std::tuple<Order, Filter, Case, char *>> options::parse(int argc, 
 				compare = Case::ignore;
 				pocet--;
 			}
+
+			else if (argv[i] == std::string("-e")) {
+				space = Filtere::empty;
+				pocet--;
+			}
 		}
 
 		if (pocet == 2 && auxi == 1) {
-			return std::make_tuple(order, filter, compare, argv[argc - 1]);
+			return std::make_tuple(order, filter, compare, space, argv[argc - 1]);
 		}
 
 		else if (pocet == 1)
-			return std::make_tuple(order, filter, compare, input);
+			return std::make_tuple(order, filter, compare, space, input);
 
 		else
 			return {};
